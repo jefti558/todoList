@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+
+  function startProgressJS() {
+    let maxWidth = $(".EmptyBar").width();
+      let pBar = $(".progBar");
+      let bar = 0;
+      
+    
+      let interval = setInterval(function () {
+        
+        console.log("In progress loop");
+        bar += 1;
+        pBar.width(bar); // set bar's width
+
+        if (bar == maxWidth) {
+          clearInterval(interval);
+        }
+      }, 10)
+  }
+
+  function startProgressCSS() {
+    $(".progBar").css("width", "100%");
+    $(".progBar").css("transition", "width 2s");
+  }
+
+
+  $( function() {
+    $(".startBtn").click(function() {
+      console.log("start clicked!");
+      //startProgressJS();
+      startProgressCSS();
+      
+    })
+
+    $(".resetBtn").click(function() {
+      $(".progBar").css("transition", "width 0s");
+      $(".progBar").css("width", "0%");
+      
+    })
+
+    
+
+  });
+
+</script>
+</head>
+
+
+<body>
+  
+  <div class="container">
+    <h2 class="title">Progress Bar</h1>
+    <div class="EmptyBar">
+      <div class="progBar"> </div>
+    </div>
+    <input class="startBtn btn" type="button" value="Start">
+    <input class="resetBtn btn" type="button" value="Reset">
+  </div>
+
+  
+</body>
+</html>

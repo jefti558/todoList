@@ -1,12 +1,13 @@
 * {
     padding: 0px;
     margin: 0px;
-
     
 }
 
 .title {
     background-color: #313131;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     padding: 10px;
     color: white;
 }
@@ -25,6 +26,7 @@ div {
     background-color: #474747;
     color: #a3a3a3;
     border: none;
+    border-radius: 2px;
 }
 
 .btn:hover {
@@ -36,6 +38,7 @@ div {
     position: relative;
     border: rgba(255, 255, 255, 0.842) solid 1px;
     margin: 10px;
+    border-radius: 5px;
 }
 
 
@@ -74,14 +77,27 @@ input[type="text"] {
 }
 
 .taskInput {
-    border: none;
     font-size: large;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#inputSpan {
+    overflow: hidden;
+    display: block;
+    padding-right: 10px;
+}
+
+.container.todo {
     width: auto;
+    max-width: 750px;
+    min-width: 300px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .todoList {
     list-style-type:none;
-
 }
 
 .todoItem:hover {
@@ -117,6 +133,8 @@ input[type="text"] {
 }
 
 .taskDetails h1 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background-color: #181818;
     text-align: center;
     padding: 5px;
@@ -133,8 +151,4 @@ input[type="text"] {
 
 .subDetails:hover {
     background-color: #494949;
-}
-
-.subDetails input {
-    width: 100%;
 }

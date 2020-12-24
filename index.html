@@ -8,37 +8,8 @@
 
 <script>
 
-  function startProgressJS() {
-    let maxWidth = $(".EmptyBar").width();
-      let pBar = $(".progBar");
-      let bar = 0;
-      
-    
-      let interval = setInterval(function () {
-        
-        console.log("In progress loop");
-        bar += 1;
-        pBar.width(bar); // set bar's width
-
-        if (bar == maxWidth) {
-          clearInterval(interval);
-        }
-      }, 10)
-  }
-
-  function startProgressCSS() {
-    $(".progBar").css("width", "100%");
-    $(".progBar").css("transition", "width 2s");
-  }
-
 
   $( function() {
-    $(".startBtn").click(function() {
-      console.log("start clicked!");
-      //startProgressJS();
-      startProgressCSS();
-      
-    })
 
     let isBeingSorted = false;
     // make list interactive
@@ -52,11 +23,6 @@
       }
     });
 
-    $(".resetBtn").click(function() {
-      $(".progBar").css("transition", "width 0s");
-      $(".progBar").css("width", "0%");
-      
-    })
 
     $(".new").click(function () {
       $(".taskForm").show(); // Display new item form
@@ -86,8 +52,6 @@
       }
       return false;
     })
-
-
 
 
     // todoItem handlers
@@ -122,43 +86,36 @@
       <h1 class="taskName">TASK HERE</h1>
       <div class="subDetails">
         <label for="date">Due Date: </label>
-        <input id="date" type="text">
+        <span></span>
       </div>
       <div class="subDetails">
         <label>Priority: </label>
-        <input type="text">
+        <span></span>
       </div>
       <div class="subDetails">
         <label>Details: </label>
-        <input type="text">
+        <span></span>
+        
       </div>
     </div>
   </div>
-  <div class="container">
-    <h2 class="title">Progress Bar</h1>
-    <div class="EmptyBar">
-      <div class="progBar"> </div>
-    </div>
-    <input class="startBtn btn" type="button" value="Start">
-    <input class="resetBtn btn" type="button" value="Reset">
-  </div>
 
-  <div class="container">
+
+  <div class="container todo">
     <h2 class="title">Todo List v2</h2>
 
     <ul class=todoList>
     </ul>
     <input class="todoBtn new btn" type="button" value="New Task">
     <form class="taskForm">
-      <input class="todoBtn taskInput" type="text" placeholder="Task Here">
+      <span id="inputSpan">
+        <input class="todoBtn taskInput" type="text" placeholder="Task Here">
+      </span>
+      
       <div>
         <input class="todoBtn cancel btn" type="button" value="Cancel"><input class="todoBtn add btn" type="submit" value="Add">
-        
       </div>
-      
     </form>
-
   </div>
-
 </body>
 </html>
