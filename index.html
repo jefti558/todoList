@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+
+  function startProgressJS() {
+    let maxWidth = $(".EmptyBar").width();
+      let pBar = $(".progBar");
+      let bar = 0;
+      
+    
+      let interval = setInterval(function () {
+        
+        console.log("In progress loop");
+        bar += 1;
+        pBar.width(bar); // set bar's width
+
+        if (bar == maxWidth) {
+          clearInterval(interval);
+        }
+      }, 10)
+  }
+
+  function startProgressCSS() {
+    $(".progBar").css("width", "100%");
+    $(".progBar").css("transition", "width 2s");
+  }
+
+
+  $( function() {
+    $(".startBtn").click(function() {
+      console.log("start clicked!");
+      //startProgressJS();
+      startProgressCSS();
+      
+    })
+
+    let isBeingSorted = false;
+    // make list interactive
+    $('.todoList').sortable({
+      start: function(event, ui) { isBeingSorted = true; },
+      stop: function(event, ui) { 
+        setTimeout(function() {
+          isBeingSorted = false; 
+        }, 300)
+        
+      }
+    });
+
+    $(".resetBtn").click(function() {
+      $(".progBar").css("transition", "width 0s");
+      $(".progBar").css("width", "0%");
+      
+    })
+
+    $(".new").click(function () {
+      $(".taskForm").show(); // Display new item form
+      $(".new").hide(); // hide button
+      $(".taskInput").focus();
+      $(".taskInput").val("");
+    })
+
+    $(".cancel").click(function() {
+      $(".taskForm").hide();
+      $(".new").show();
+    })
+
+    $('.taskForm').submit(function() {
+      $(".taskForm").hide();
+      $(".new").show();
+
+      let task = $('.taskInput').val();
+      if (task) {
+        // add task here
+        $('.todoList').append(`
+          <li class="todoItem">
+            <input class="finish" type="radio" style="margin: 5px">
+            <span style="font-size: large">${task}</span>
+          </li>`);
+        $('.new').focus();
+      }
+      return false;
+    })
+
+
+
+
+    // todoItem handlers
+    $(".todoList").on("click", ".todoItem", function() {
+      // check if radio button clicked
+      let deleted = $(this).find('input').is(':checked');
+      if(!isBeingSorted && !deleted) {
+        $('#overlay').show();
+        $('.taskName').html($(this).find('span').html())
+      }
+    })
+
+
+    $(".todoList").on("click", ".todoItem .finish", function() {
+      $(this).parent().remove();
+    })
+
+
+    $('#overlay').click(function (){
+      $('#overlay').hide();
+    })
+
+  });
+
+</script>
+</head>
+
+
+<body>
+  <div id="overlay">
+    <div class="taskDetails container">
+      <h1 class="taskName">TASK HERE</h1>
+      <div class="subDetails">
+        <label for="date">Due Date: </label>
+        <input id="date" type="text">
+      </div>
+      <div class="subDetails">
+        <label>Priority: </label>
+        <input type="text">
+      </div>
+      <div class="subDetails">
+        <label>Details: </label>
+        <input type="text">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="title">Progress Bar</h1>
+    <div class="EmptyBar">
+      <div class="progBar"> </div>
+    </div>
+    <input class="startBtn btn" type="button" value="Start">
+    <input class="resetBtn btn" type="button" value="Reset">
+  </div>
+
+  <div class="container">
+    <h2 class="title">Todo List v2</h2>
+
+    <ul class=todoList>
+    </ul>
+    <input class="todoBtn new btn" type="button" value="New Task">
+    <form class="taskForm">
+      <input class="todoBtn taskInput" type="text" placeholder="Task Here">
+      <div>
+        <input class="todoBtn cancel btn" type="button" value="Cancel"><input class="todoBtn add btn" type="submit" value="Add">
+        
+      </div>
+      
+    </form>
+
+  </div>
+
+</body>
+</html>

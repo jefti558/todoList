@@ -1,0 +1,140 @@
+* {
+    padding: 0px;
+    margin: 0px;
+
+    
+}
+
+.title {
+    background-color: #313131;
+    padding: 10px;
+    color: white;
+}
+
+body {
+    background-color: #1a1a1a;
+}
+
+div {
+    color: white; 
+}
+
+.btn {
+    margin: 5px;
+    padding: 5px;
+    background-color: #474747;
+    color: #a3a3a3;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #474747;
+    color: #f0f0f0;
+}
+
+.container {
+    position: relative;
+    border: rgba(255, 255, 255, 0.842) solid 1px;
+    margin: 10px;
+}
+
+
+.EmptyBar {
+    border-radius: 5px;
+    margin: 15px;
+    border: solid white 1px;
+    width: 300px;
+    height: 30px;
+}
+
+.progBar {
+    border-radius: 5px;
+    width: 0%;
+    height: 100%;
+    background-color: green;
+}
+
+input[type="text"] {
+    padding: 3px;
+    margin: 5px;
+}
+
+.taskForm {
+    
+    display: none;
+}
+
+.todoBtn {
+    margin: 5px;
+}
+
+.todoItem {
+    color: white;
+    padding: 8px;
+}
+
+.taskInput {
+    border: none;
+    font-size: large;
+    width: auto;
+}
+
+.todoList {
+    list-style-type:none;
+
+}
+
+.todoItem:hover {
+
+    background-color: #252525;
+}
+
+.bottomRight {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.bottomLeft {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.taskDetails {
+    background-color: #242424;
+    width: 500px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.taskDetails div {
+    font-size: 16px;
+    padding: 16px;
+    font-size: 20px;
+}
+
+.taskDetails h1 {
+    background-color: #181818;
+    text-align: center;
+    padding: 5px;
+}
+
+#overlay {
+    background: rgba(0,0,0, 0.6);  
+    height: 100vh;                
+    position: fixed;              
+    width: 100%;                  
+    z-index: 30;   
+    display: none;             
+}
+
+.subDetails:hover {
+    background-color: #494949;
+}
+
+.subDetails input {
+    width: 100%;
+}
