@@ -35,12 +35,22 @@ div {
 }
 
 .container {
-    position: relative;
     border: rgba(255, 255, 255, 0.842) solid 1px;
     margin: 10px;
     border-radius: 5px;
+    margin-top: 65px;
 }
 
+.navbar {
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.87);
+    padding: 5px;
+    width: 100%;
+    height: 55px;
+    position: fixed;
+    box-sizing: border-box;
+    top: 0px;
+}
 
 .EmptyBar {
     border-radius: 5px;
@@ -92,7 +102,8 @@ input[type="text"] {
     width: auto;
     max-width: 750px;
     min-width: 300px;
-    margin: 0 auto;
+    margin: 65px auto;
+    
     box-sizing: border-box;
 }
 
