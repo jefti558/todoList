@@ -7,9 +7,78 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
+  let storedTasks = [];
 
+  function drawTask(task) {
+    $('.todoList').append(`
+          <li id="${task.ID}" class="todoItem">
+            <input class="finish" type="radio" style="margin: 5px">
+            <span style="font-size: large">${task.data}</span>
+          </li>`);
+  }
+
+  function drawTasks() {
+    for (let i in storedTasks) {
+      console.log("Task" + i + ": " + storedTasks[i].data);
+      drawTask(storedTasks[i]);
+    }
+  }
+
+  function addTask(task) {
+    storedTasks.push(task);
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
+    drawTask(task);
+  }
+
+  function createTask(taskData) {
+    let nextID = Number(localStorage.getItem("nextID"));
+    let task = {
+      data: taskData,
+      priority: "",
+      date: "",
+      details: "",
+      ID: nextID
+    }
+    localStorage.setItem("nextID", String(++nextID));
+    return task;
+  }
+
+  function removeTask(elementChild) {
+    alert("removing: " + $(elementChild).parent().attr("id"))
+    let taskID = $(elementChild).parent().attr("id");
+
+    // remove element from storedTasks
+    for (let i = 0; i < storedTasks.length; i++) {
+      if (storedTasks[i].ID == taskID) {
+        storedTasks.splice(i, 1);
+        break;
+      }
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
+    $(elementChild).parent().remove();
+    // get ID from hidden element
+
+  }
 
   $( function() {
+    // initialize nextID;
+    if (!localStorage.getItem("nextID")) {
+      localStorage.setItem("nextID", "0");
+    }
+
+    // initialize local storage
+    if (!localStorage.getItem("tasks")) {
+      console.log("created localstorage")
+      localStorage.setItem("tasks", "[]");
+    } 
+
+    storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    
+
+    drawTasks();
+    
+
 
     let isBeingSorted = false;
     // make list interactive
@@ -40,14 +109,13 @@
       $(".taskForm").hide();
       $(".new").show();
 
-      let task = $('.taskInput').val();
-      if (task) {
+      let taskData = $('.taskInput').val();
+      if (taskData) {
         // add task here
-        $('.todoList').append(`
-          <li class="todoItem">
-            <input class="finish" type="radio" style="margin: 5px">
-            <span style="font-size: large">${task}</span>
-          </li>`);
+        let task = createTask(taskData);
+        addTask(task);
+
+        
         $('.new').focus();
       }
       return false;
@@ -66,7 +134,8 @@
 
 
     $(".todoList").on("click", ".todoItem .finish", function() {
-      $(this).parent().remove();
+      removeTask(this);
+      
     })
 
 
