@@ -20,6 +20,10 @@ div {
     color: white; 
 }
 
+.content {
+    margin-top: 65px;
+}
+
 .btn {
     margin: 5px;
     padding: 5px;
@@ -44,12 +48,24 @@ div {
 .navbar {
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.87);
-    padding: 5px;
     width: 100%;
-    height: 55px;
     position: fixed;
     box-sizing: border-box;
     top: 0px;
+}
+
+.navbar a {
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.836);
+    color: black;
 }
 
 .EmptyBar {
