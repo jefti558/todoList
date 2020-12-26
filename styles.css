@@ -24,6 +24,14 @@ div {
     margin-top: 65px;
 }
 
+.fib div {
+    margin: 5px;
+}
+
+.fibResult {
+    font-weight: bold;
+}
+
 .btn {
     margin: 5px;
     padding: 5px;

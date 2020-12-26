@@ -7,6 +7,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
+  function fib(num) {
+    let history = [];
+    function fibRec(num, history) {
+      if (num == 0) {
+      return 0;
+    }
+    else if (num == 1) {
+      return 1;
+    }
+    else {
+      if (history[num]){
+        return history[num];
+      }
+      else {
+        history[num] = fibRec(num-1, history) + fibRec(num-2, history);
+      }
+      return history[num];
+    } 
+    }
+    return fibRec(num, history);
+  }
+
 
   function startProgressJS() {
     let maxWidth = $(".EmptyBar").width();
@@ -59,6 +81,7 @@
     <a href="index.html">Todo List</a>
     <a href="progress.html">Progress Bar</a>
     <a href="squares.html">Squares</a>
+    <a href="fibWidget.html">Fibonacci</a>
   </div>
   
   <div class="container">

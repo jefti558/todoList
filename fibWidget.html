@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+  function fib(num) {
+    let history = [];
+    function fibRec(num, history) {
+      if (num == 0) {
+      return 0;
+    }
+    else if (num == 1) {
+      return 1;
+    }
+    else {
+      if (history[num]){
+        return history[num];
+      }
+      else {
+        history[num] = fibRec(num-1, history) + fibRec(num-2, history);
+      }
+      return history[num];
+    } 
+    }
+    return fibRec(num, history);
+  }
+    
+  // init function
+  $(function() {
+    // Register fib submit event
+    $('.fibCalc').submit(function() {
+        let num = $('.fibInput').val();
+        let fibNum = fib(num);
+        $(".fibResult").html(fibNum);
+
+
+        return false;
+    })
+  })
+
+
+</script>
+</head>
+
+
+<body>
+    <div class="navbar">
+        <a href="index.html">Todo List</a>
+        <a href="progress.html">Progress Bar</a>
+        <a href="squares.html">Squares</a>
+        <a href="fibWidget.html">Fibonacci</a>
+      </div>
+  
+  <div class="container fib">
+    <h2 class="title">Fibonacci Calculator</h2>
+    <div class="fibElem" >Enter Number</div>
+    <form class="fibCalc">
+        <input class="fibInput" type="text"> 
+        <input class="btn fibSubmit" type="submit" value="Calculate">
+    </form>
+    <div>
+        Your Fib: <span class="fibResult"></span>
+    </div>
+    
+  </div>
+
+  
+</body>
+</html>
